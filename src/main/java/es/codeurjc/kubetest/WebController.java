@@ -34,7 +34,6 @@ public class WebController {
 	public String mainPage(HttpSession session, Model model) throws UnknownHostException {
 		
 		String userColor;
-		System.out.println(session.getAttribute(HazelcastIndexedSessionRepository.PRINCIPAL_NAME_ATTRIBUTE));
 		if(session.isNew() || session.getAttribute("userColor") == null) {
 			userColor = colors[nextColor];
 			nextColor = (nextColor + 1) % colors.length;

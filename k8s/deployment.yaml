@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: kubernetes-pod-chaos-monkey
-  namespace: kube-system
+  namespace: default
 spec:
   selector:
     matchLabels:
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: kubernetes-pod-chaos-monkey
-        image: codeurjc/kubernetes-pod-chaos-monkey
+        image: codeurjc/kubernetes-pod-chaos-monkey:v3
         imagePullPolicy: Always
         env:
         - name: TAG
@@ -26,5 +26,3 @@ spec:
           value: default
         - name: DELAY
           value: '10'
-          
-

@@ -1,13 +1,10 @@
 config:
-  target: 'http://127.0.0.1:31890'
+  target: 'http://10.152.183.238'
   phases:
-    - duration: 30
-      arrivalRate: 20
+    - duration: 60
+      arrivalRate: 30
 scenarios:
   - flow:
     - get:
         url: "/"
-        auth:
-          user: admin
-          pass: admin
 

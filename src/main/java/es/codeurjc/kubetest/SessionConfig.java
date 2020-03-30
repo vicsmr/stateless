@@ -7,6 +7,7 @@ import org.springframework.session.hazelcast.config.annotation.web.http.EnableHa
 import org.springframework.session.hazelcast.HazelcastIndexedSessionRepository;
 
 import com.hazelcast.config.Config;
+import com.hazelcast.config.JoinConfig;
 import com.hazelcast.config.MapAttributeConfig;
 import com.hazelcast.config.MapIndexConfig;
 import com.hazelcast.core.Hazelcast;
@@ -23,6 +24,10 @@ public class SessionConfig {
 				.setExtractor(PrincipalNameExtractor.class.getName());
 
 		Config config = new Config();
+
+		JoinConfig joinConfig = config.getNetworkConfig().getJoin();
+		joinConfig.getMulticastConfig().setEnabled(false);
+		joinConfig.getKubernetesConfig().setEnabled(true);
 
 		config.getMapConfig(HazelcastIndexedSessionRepository.DEFAULT_SESSION_MAP_NAME)
 				.addMapAttributeConfig(attributeConfig)
